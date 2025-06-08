@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using kolokwium.DTO;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using prescription_add_ep.Services;
 
 namespace prescription_add_ep.Controllers;
@@ -7,9 +9,11 @@ namespace prescription_add_ep.Controllers;
 [Route("api/[controller]")]
 public class EnrollmentController(IEnrollmentService enrollmentService)
 {
-    [HttpGet("{patientId}")]
-    public async Task<String> GetPatientDetails(int patientId)
+   
+    [HttpGet]
+    public async Task<IActionResult> GetAllEnrollments()
     {
-        return await enrollmentService.GetStudent(patientId);
+       return await enrollmentService.GetEnrollments();
     }
+    
 }
